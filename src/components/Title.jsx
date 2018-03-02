@@ -1,12 +1,12 @@
-import React from 'react';
-import { pathFromBezierCurve } from '../utils/formulas';
+import React from 'react'
+import { pathFromBezierCurve } from '../utils/formulas'
 
 const Title = () => {
   const textStyle = {
     fontFamily: '"Joti One", cursive',
     fontSize: 120,
     fill: '#cbca62',
-  };
+  }
 
   const aliensLineCurve = {
     initialAxis: {
@@ -25,7 +25,7 @@ const Title = () => {
       x: 380,
       y: 0,
     },
-  };
+  }
 
   const goHomeLineCurve = {
     ...aliensLineCurve,
@@ -45,7 +45,7 @@ const Title = () => {
       x: 500,
       y: 0,
     },
-  };
+  }
 
   return (
     <g filter="url(#shadow)">
@@ -70,7 +70,7 @@ const Title = () => {
         </textPath>
       </text>
     </g>
-  );
-};
+  )
+}
 
-export default Title;
+export default Title

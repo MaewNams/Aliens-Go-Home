@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import io from 'socket.io-client';
-import PropTypes from 'prop-types';
-import * as Auth0 from 'auth0-web';
+import React, {Component} from 'react'
+import io from 'socket.io-client'
+import PropTypes from 'prop-types'
+import * as Auth0 from 'auth0-web'
 
-import { getCanvasPosition } from './utils/formulas';
-import Canvas from './components/Canvas';
+import { getCanvasPosition } from './utils/formulas'
+import Canvas from './components/Canvas'
 
 Auth0.configure({
   domain: 'maewnams.auth0.com',
@@ -13,58 +13,58 @@ Auth0.configure({
   responseType: 'token id_token',
   scope: 'openid profile manage:points',
   audience: 'https://aliens-go-home.digituz.com.br',
-});
+})
 
 class App extends Component {
   constructor(props) {
-  super(props);
-  this.shoot = this.shoot.bind(this);
-  this.socket = null;
-  this.currentPlayer = null;
+  super(props)
+  this.shoot = this.shoot.bind(this)
+  this.socket = null
+  this.currentPlayer = null
 }
 
 componentDidMount() {
-    const self = this;
+    const self = this
 
-    Auth0.handleAuthCallback();
+    Auth0.handleAuthCallback()
 
     Auth0.subscribe((auth) => {
-      if (!auth) return;
+      if (!auth) return
 
-      self.playerProfile = Auth0.getProfile();
+      self.playerProfile = Auth0.getProfile()
       self.currentPlayer = {
         id: self.playerProfile.sub,
         maxScore: 0,
         name: self.playerProfile.name,
         picture: self.playerProfile.picture,
-      };
+      }
 
-      this.props.loggedIn(self.currentPlayer);
+      this.props.loggedIn(self.currentPlayer)
 
       self.socket = io('http://localhost:3001', {
         query: `token=${Auth0.getAccessToken()}`,
-      });
+      })
 
       self.socket.on('players', (players) => {
-        this.props.leaderboardLoaded(players);
+        this.props.leaderboardLoaded(players)
         players.forEach((player) => {
           if (player.id === self.currentPlayer.id) {
-            self.currentPlayer.maxScore = player.maxScore;
+            self.currentPlayer.maxScore = player.maxScore
           }
-        });
-      });
-    });
+        })
+      })
+    })
 
     setInterval(() => {
-      self.props.moveObjects(self.canvasMousePosition);
-    }, 10);
+      self.props.moveObjects(self.canvasMousePosition)
+    }, 10)
 
     window.onresize = () => {
-      const cnv = document.getElementById('aliens-go-home-canvas');
-      cnv.style.width = `${window.innerWidth}px`;
-      cnv.style.height = `${window.innerHeight}px`;
-    };
-    window.onresize();
+      const cnv = document.getElementById('aliens-go-home-canvas')
+      cnv.style.width = `${window.innerWidth}px`
+      cnv.style.height = `${window.innerHeight}px`
+    }
+    window.onresize()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -73,24 +73,24 @@ componentDidMount() {
         this.socket.emit('new-max-score', {
           ...this.currentPlayer,
           maxScore: this.props.gameState.kills,
-        });
+        })
       }
     }
   }
 
   trackMouse(event) {
-    this.canvasMousePosition = getCanvasPosition(event);
+    this.canvasMousePosition = getCanvasPosition(event)
     window.onresize = () => {
-    const cnv = document.getElementById('aliens-go-home-canvas');
-    cnv.style.width = `${window.innerWidth}px`;
-    cnv.style.height = `${window.innerHeight}px`;
-  };
-    window.onresize();
+    const cnv = document.getElementById('aliens-go-home-canvas')
+    cnv.style.width = `${window.innerWidth}px`
+    cnv.style.height = `${window.innerHeight}px`
+  }
+    window.onresize()
 
   }
 
   shoot() {
-     this.props.shoot(this.canvasMousePosition);
+     this.props.shoot(this.canvasMousePosition)
   }
 
   render() {
@@ -104,7 +104,7 @@ componentDidMount() {
         trackMouse={event => (this.trackMouse(event))}
         shoot={this.shoot}
       />
-    );
+    )
   }
 }
 
@@ -139,11 +139,11 @@ App.propTypes = {
     picture: PropTypes.string.isRequired,
   })),
   shoot: PropTypes.func.isRequired,
-};
+}
 
 App.defaultProps = {
   currentPlayer: null,
   players: null,
-};
+}
 
-export default App;
+export default App

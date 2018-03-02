@@ -6,4 +6,4 @@ export default (state, initialGameState) => {
       started: true,
     }
   }
-};
+}

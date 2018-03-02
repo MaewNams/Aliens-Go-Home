@@ -1,29 +1,29 @@
 import React from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import CannonBase from './CannonBase'
 import CannonBall from './CannonBall'
 import CannonPipe from './CannonPipe'
 import CurrentScore from './CurrentScore'
-import FlyingObject from './FlyingObject';
+import FlyingObject from './FlyingObject'
 import Heart from './Heart'
 import Ground from './Ground'
 import Sky from './Sky'
 import StartGame from './StartGame'
 import Title from './Title'
-import Leaderboard from './Leaderboard';
-import { signIn } from 'auth0-web';
+import Leaderboard from './Leaderboard'
+import { signIn } from 'auth0-web'
 
 
 const Canvas = (props) => {
-  const gameHeight = 1200;
-  const viewBox = [window.innerWidth / -2, 100 - gameHeight, window.innerWidth, gameHeight];
-  const lives = [];
-  for (let i = 0; i < props.gameState.lives; i++) {
+  const gameHeight = 1200
+  const viewBox = [window.innerWidth / -2, 100 - gameHeight, window.innerWidth, gameHeight]
+  const lives = []
+  for (let i = 0 i < props.gameState.lives i++) {
     const heartPosition = {
       x: -180 - (i * 70),
       y: 35
-    };
-    lives.push(<Heart key={i} position={heartPosition}/>);
+    }
+    lives.push(<Heart key={i} position={heartPosition}/>)
   }
 
   return (
@@ -66,9 +66,8 @@ const Canvas = (props) => {
 
       {lives}
     </svg>
-  );
-};
-
+  )
+}
 
 Canvas.propTypes = {
   angle: PropTypes.number.isRequired,
@@ -99,11 +98,11 @@ Canvas.propTypes = {
     picture: PropTypes.string.isRequired,
   })),
   shoot: PropTypes.func.isRequired,
-};
+}
 
 Canvas.defaultProps = {
   currentPlayer: null,
   players: null,
-};
+}
 
-export default Canvas;
+export default Canvas

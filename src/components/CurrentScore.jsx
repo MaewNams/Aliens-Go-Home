@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const CurrentScore = (props) => {
   const scoreStyle = {
     fontFamily: '"Joti One", cursive',
     fontSize: 80,
     fill: '#d6d33e',
-  };
+  }
 
   return (
     <g filter="url(#shadow)">
@@ -14,11 +14,11 @@ const CurrentScore = (props) => {
         {props.score}
       </text>
     </g>
-  );
-};
+  )
+}
 
 CurrentScore.propTypes = {
   score: PropTypes.number.isRequired,
-};
+}
 
-export default CurrentScore;
+export default CurrentScore

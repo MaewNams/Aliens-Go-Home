@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { gameWidth } from '../utils/constants';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { gameWidth } from '../utils/constants'
 
 const StartGame = (props) => {
   const button = {
@@ -15,7 +15,7 @@ const StartGame = (props) => {
       cursor: 'pointer',
     },
     onClick: props.onClick,
-  };
+  }
 
   const text = {
     textAnchor: 'middle', // center
@@ -28,7 +28,7 @@ const StartGame = (props) => {
       cursor: 'pointer',
     },
     onClick: props.onClick,
-  };
+  }
   return (
     <g filter="url(#shadow)">
       <rect {...button} />
@@ -36,11 +36,11 @@ const StartGame = (props) => {
         Tap To Start!
       </text>
     </g>
-  );
-};
+  )
+}
 
 StartGame.propTypes = {
   onClick: PropTypes.func.isRequired,
-};
+}
 
-export default StartGame;
+export default StartGame

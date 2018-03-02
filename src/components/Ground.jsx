@@ -1,15 +1,14 @@
-import React from 'react';
+import React from 'react'
 
 const Ground = () => {
   const groundStyle = {
     fill: '#59a941',
-  };
+  }
   const division = {
     stroke: '#458232',
     strokeWidth: '3px',
-  };
-
-  const groundWidth = 5000;
+  }
+  const groundWidth = 5000
 
   return (
     <g id="ground">
@@ -30,7 +29,7 @@ const Ground = () => {
         style={division}
       />
     </g>
-  );
-};
+  )
+}
 
-export default Ground;
+export default Ground

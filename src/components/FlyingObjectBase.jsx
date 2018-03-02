@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const FlyingObjectBase = (props) => {
   const style = {
     fill: '#979797',
     stroke: '#5c5c5c',
-  };
+  }
 
   return (
     <ellipse
@@ -15,14 +15,14 @@ const FlyingObjectBase = (props) => {
       ry="10"
       style={style}
     />
-  );
-};
+  )
+}
 
 FlyingObjectBase.propTypes = {
   position: PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired
   }).isRequired,
-};
+}
 
-export default FlyingObjectBase;
+export default FlyingObjectBase

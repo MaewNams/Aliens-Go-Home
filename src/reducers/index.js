@@ -4,10 +4,10 @@ LOGGED_IN,
 MOVE_OBJECTS,
 SHOOT,
 START_GAME,
-} from '../actions';
-import moveObjects from './moveObjects';
-import startGame from './startGame';
-import shoot from './shoot';
+} from '../actions'
+import moveObjects from './moveObjects'
+import startGame from './startGame'
+import shoot from './shoot'
 
 const initialGameState = {
   started: false,
@@ -18,12 +18,12 @@ const initialGameState = {
   currentPlayer: null,
   players: null,
   cannonBalls: [],
-};
+}
 
 const initialState = {
   angle: 45,
   gameState: initialGameState,
-};
+}
 
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -38,14 +38,14 @@ function reducer(state = initialState, action) {
       currentPlayer: action.player,
     }
     case MOVE_OBJECTS:
-      return moveObjects(state, action);
+      return moveObjects(state, action)
     case START_GAME:
-      return startGame(state, initialGameState);
+      return startGame(state, initialGameState)
     case SHOOT:
-      return shoot(state, action);
+      return shoot(state, action)
     default:
-      return state;
+      return state
   }
 }
 
-export default reducer;
+export default reducer
